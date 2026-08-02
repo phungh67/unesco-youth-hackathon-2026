@@ -5,88 +5,66 @@ echo ========================================================
 echo                      DISCLAIMER
 echo ========================================================
 echo This script will verify, download, and install:
-echo   1. Git (if not installed)
-echo   2. Python 3.10 (if not installed)
-echo   3. SafeHer Engine Repository
-echo   4. Local NLP Models
-echo   5. Backend Python Dependencies
+echo   1. Git and Python 3.10 (if missing)
+echo   2. SafeHer Engine Repository
+echo   3. ONNX Models (phobert_hate)
+echo   4. SBERT Embedding Model (via export_onnx.py)
+echo   5. HuggingFace Tokenizers (via downloader.py)
+echo   6. Backend Python Dependencies
 echo.
 echo Press any key to accept and proceed...
 echo ========================================================
 pause >nul
 
-echo.
-echo ========================================================
-echo                 INSTALLATION STEPS
-echo ========================================================
-echo   Step 1: Check and auto-install Git & Python
-echo   Step 2: Clone repository
-echo   Step 3: Download NLP model file
-echo   Step 4: Create virtual environment & install libraries
-echo   Step 5: Run database/service initialization
-echo   Step 6: Launch entrypoint server
-echo ========================================================
-pause
-
 :: ----------------------------------------------------------
 :: STEP 1: CHECK & INSTALL MISSING SOFTWARE
 :: ----------------------------------------------------------
 echo.
-echo [1/6] Checking required software...
+echo [1/8] Checking required software...
 
-:: Check Git
 git --version >nul 2>&1
 IF %ERRORLEVEL% NEQ 0 (
     echo [!] Git is missing. Downloading Git installer...
     curl -L -o git_installer.exe "https://github.com/git-for-windows/git/releases/download/v2.44.0.windows.1/Git-2.44.0-64-bit.exe"
-    echo [!] Installing Git silently...
     start /wait git_installer.exe /VERYSILENT /NORESTART /NOCANCEL /SP- /CLOSEAPPLICATIONS
     del git_installer.exe
-    :: Refresh PATH for current session
     set "PATH=%ProgramFiles%\Git\cmd;%PATH%"
-    echo [+] Git installed successfully!
-) ELSE (
-    echo [+] Git is already installed.
 )
 
-:: Check Python
 python --version >nul 2>&1
 IF %ERRORLEVEL% NEQ 0 (
-    echo [!] Python is missing. Downloading Python 3.10 installer...
+    echo [!] Python is missing. Downloading Python 3.10...
     curl -L -o python_installer.exe "https://www.python.org/ftp/python/3.10.11/python-3.10.11-amd64.exe"
-    echo [!] Installing Python 3.10...
     start /wait python_installer.exe /quiet InstallAllUsers=0 PrependPath=1 Include_test=0
     del python_installer.exe
-    :: Refresh PATH for current session
     set "PATH=%LocalAppData%\Programs\Python\Python310;%LocalAppData%\Programs\Python\Python310\Scripts;%PATH%"
-    echo [+] Python installed successfully!
-) ELSE (
-    echo [+] Python is already installed.
 )
 
 :: ----------------------------------------------------------
-:: STEP 2: CLONE REPOSITORY
+:: STEP 2: CLONE REPOSITORY & NAVIGATE
 :: ----------------------------------------------------------
 echo.
-echo [2/6] Cloning Repository...
-:: Replace with your actual GitHub/GitLab URL
-git clone "https://github.com/your-username/safeher-engine.git" safeher-engine
-cd safeher-engine
+echo [2/8] Cloning Repository...
+git clone "https://github.com/phungh67/unesco-youth-hackathon-2026.git" safeher-engine
+cd safeher-engine\backend
 
 :: ----------------------------------------------------------
-:: STEP 3: DOWNLOAD NLP MODEL
+:: STEP 3: CREATE DIRECTORIES & DOWNLOAD ONNX MODELS
 :: ----------------------------------------------------------
 echo.
-echo [3/6] Downloading NLP Model...
-:: Replace URL with your actual model URL
-:: curl -L -o my_nlp_model.bin "https://your-model-url.com/model.bin"
-echo [+] NLP Model downloaded.
+echo [3/8] Setting up model directories and downloading weights...
+IF NOT EXIST "data\models" mkdir "data\models"
+
+:: Download ONNX model files into backend\data\models\
+:: curl -L -o "data\models\phobert_hate.onnx" "https://your-model-url.com/phobert_hate.onnx"
+:: curl -L -o "data\models\phobert_hate.onnx.data" "https://your-model-url.com/phobert_hate.onnx.data"
+echo [+] ONNX Models placed in backend\data\models\
 
 :: ----------------------------------------------------------
 :: STEP 4: VIRTUAL ENVIRONMENT & DEPENDENCIES
 :: ----------------------------------------------------------
 echo.
-echo [4/6] Setting up Python Environment & Dependencies...
+echo [4/8] Setting up Python Environment & Dependencies...
 IF NOT EXIST "venv" (
     python -m venv venv
 )
@@ -95,18 +73,32 @@ python -m pip install --upgrade pip
 pip install -r requirements.txt
 
 :: ----------------------------------------------------------
-:: STEP 5: INITIALIZATION SERVICE
+:: STEP 5: EXPORT SBERT EMBEDDING MODEL
 :: ----------------------------------------------------------
 echo.
-echo [5/6] Executing Initialization Script...
-python -c "import helper; helper.initscript()"
+echo [5/8] Running helper/export_onnx.py (Exporting SBERT Embedding Model)...
+python helper\export_onnx.py
 
 :: ----------------------------------------------------------
-:: STEP 6: LAUNCH BACKEND
+:: STEP 6: RUN DOWNLOADER SCRIPT
+:: ----------------------------------------------------------
+echo.
+echo [6/8] Running downloader.py (Installing Tokenizers/Embeddings)...
+python downloader.py
+
+:: ----------------------------------------------------------
+:: STEP 7: DATABASE SEEDING
+:: ----------------------------------------------------------
+echo.
+echo [7/8] Seeding the local ChromaDB database...
+python helper\db_seeding.py
+
+:: ----------------------------------------------------------
+:: STEP 8: LAUNCH BACKEND
 :: ----------------------------------------------------------
 echo.
 echo ========================================================
-echo [6/6] INSTALLATION COMPLETE! Starting Server...
+echo [8/8] INSTALLATION COMPLETE! Starting Server...
 echo ========================================================
 python entrypoint.py
 
