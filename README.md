@@ -1,5 +1,5 @@
 # Introduction
-This project is the submission of UNESCO Youth hackathon, targeted the Information and Media Literacy (MIL) - addressing challenges in the scope of information & media misconducted, propaganda spreading, fake new, digital abuse/harassment,...
+This is submission of team Vinare for UNESCO Youth Hackathon 2026 for Media and Information Literacy. Solution for this contest is a framework that helps Youth can protect themselves. Especially for girls and women.
 
 The current idea focuses on hated and harassment speech via social network (or in a wider scope: cyberspace). Since nowadays, the sarcasm is commonly used as a disguised for the abuse/harassment, or somebody simply says "It's a joke, no need to make a fuss". Thus, the best approach and maybe the most suitable idea to deal with it is educating. Via this solution, users (let say, youths all around the world, but start with Vietnam, where the social network is a place that many hate speechs and harassment comments are sent everyday).
 
@@ -22,5 +22,14 @@ mil-toolkit-backend/
 
 # Status
 
-- [**Backend**](backend/README.md): Complete the skeletal logic, including create, load, handle NLP core, supports data definition, manifestation,... In addition, helper function to frame, sanitize data is also included
-- [**Frontend**](../steam/harassment-detector/extension/): To-be-added, refer to old project (the STEAM) for more information, migration-in-progress
+- **[backend](backend/README.md)** this is the logical behind the software. It ultilizes 2 famous models in recognizing and extracting Vietnamese words in a text or a paragraph. Credits for these model belongs to [VinAI/PhoBert](https://huggingface.co/vinai/phobert-base-v2)
+
+- **[frontend](frontend/manifest.json)** a web extension, can be imported into Chromium-based browsers (Google Chrome, Microsoft Edge,...), providing a user-interface, lables data for logical processing, providing alert about harassment speechs,...
+
+- **[installation](installation)** contains 2 automatically install scripts for Windows and Mac. The script will download necessary software (Python, Git) then installs it to user's machine.
+
+# Disclaimer
+
+Currently, the Cloud feature (community-based knowledge library) is not supported, so all the data will be kept in the local machine. Development team labeled and classified about 230 samples for harassment and hated speech. These material will be used in the seeding process, providing initial baseline for detection.
+
+During installation process, the script will call some lesser scripts to init the database and put data into it.
