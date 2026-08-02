@@ -1,0 +1,252 @@
+/* injector.css - SafeHer Voice Scoped Styles */
+
+#aegis-feedback-tooltip {
+    position: absolute;
+    display: none;
+    background: #FFFFFF;
+    border: 1px solid #D8DEE5;
+    border-radius: 16px;
+    padding: 16px;
+    z-index: 999999;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.12), 0 8px 10px -6px rgba(0, 0, 0, 0.06);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    color: #292929;
+    width: 360px;
+    max-width: calc(100vw - 32px);
+    box-sizing: border-box;
+    line-height: 1.4;
+}
+
+/* POP ANIMATION */
+.aegis-tooltip-in {
+    animation: safeherTooltipPop 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes safeherTooltipPop {
+    0% {
+        opacity: 0;
+        transform: scale(0.95) translateY(6px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* HEADER & TITLE */
+#aegis-feedback-tooltip .safeher-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+#aegis-feedback-tooltip .safeher-card-title {
+    font-size: 11px;
+    font-weight: 800;
+    color: #174B73;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+#aegis-feedback-tooltip .safeher-close-btn {
+    background: none;
+    border: none;
+    color: #747474;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 0 4px;
+    border-radius: 4px;
+    line-height: 1;
+}
+
+#aegis-feedback-tooltip .safeher-close-btn:hover {
+    background: #F1F5F9;
+    color: #292929;
+}
+
+/* META & BADGES */
+#aegis-feedback-tooltip .safeher-meta-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+#aegis-feedback-tooltip .safeher-meta-label {
+    font-size: 10px;
+    font-weight: 700;
+    color: #747474;
+    letter-spacing: 0.05em;
+}
+
+#aegis-feedback-tooltip .safeher-badge {
+    font-size: 9px;
+    font-weight: 800;
+    padding: 2px 8px;
+    border-radius: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+#aegis-feedback-tooltip .safeher-badge-high { background: #FFE3E5; color: #E60018; }
+#aegis-feedback-tooltip .safeher-badge-med { background: #FFF2C5; color: #D66A00; }
+#aegis-feedback-tooltip .safeher-badge-low { background: #FFF8BC; color: #A86600; }
+
+#aegis-feedback-tooltip .safeher-pattern-val {
+    font-size: 13px;
+    font-weight: 700;
+    color: #292929;
+    margin-bottom: 4px;
+}
+
+#aegis-feedback-tooltip .safeher-explanation {
+    font-size: 11px;
+    color: #747474;
+    line-height: 1.4;
+    margin-bottom: 12px;
+}
+
+#aegis-feedback-tooltip .safeher-reply-box {
+    background: #F8FAFC;
+    border-left: 3px solid #53CEC3;
+    padding: 10px 12px;
+    border-radius: 0 8px 8px 0;
+    font-size: 11px;
+    color: #292929;
+    font-style: italic;
+    line-height: 1.4;
+    margin-bottom: 14px;
+}
+
+/* BUTTONS */
+#aegis-feedback-tooltip .safeher-actions-row {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr 1fr;
+    gap: 6px;
+    margin-bottom: 10px;
+}
+
+#aegis-feedback-tooltip .safeher-btn {
+    padding: 8px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    border: 1px solid transparent;
+    transition: all 0.2s;
+    outline: none;
+    text-align: center;
+}
+
+#aegis-feedback-tooltip .safeher-btn-ignore {
+    background: #F1F5F9;
+    color: #292929;
+    border-color: #E2E8F0;
+}
+#aegis-feedback-tooltip .safeher-btn-ignore:hover { background: #E2E8F0; }
+
+#aegis-feedback-tooltip .safeher-btn-reply {
+    background: linear-gradient(135deg, #174B73, #53CEC3);
+    color: #FFFFFF;
+}
+#aegis-feedback-tooltip .safeher-btn-reply:hover { opacity: 0.95; box-shadow: 0 2px 6px rgba(83, 206, 195, 0.4); }
+
+#aegis-feedback-tooltip .safeher-btn-report {
+    background: #FFF5F5;
+    color: #E60018;
+    border-color: #FFE3E5;
+}
+#aegis-feedback-tooltip .safeher-btn-report:hover { background: #FFE3E5; }
+
+#aegis-feedback-tooltip .safeher-link-row {
+    text-align: center;
+    margin-top: 6px;
+}
+
+#aegis-feedback-tooltip .safeher-link-btn {
+    background: none;
+    border: none;
+    color: #174B73;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+#aegis-feedback-tooltip .safeher-link-btn:hover {
+    color: #53CEC3;
+}
+
+/* COUNTER SUGGEST FORM */
+#aegis-feedback-tooltip .safeher-severity-selector {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+#aegis-feedback-tooltip .safeher-severity-chip {
+    background: #F8FAFC;
+    border: 1px solid #D8DEE5;
+    border-radius: 8px;
+    padding: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #747474;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s;
+}
+
+#aegis-feedback-tooltip .safeher-severity-chip.active {
+    background: #174B73;
+    color: #FFFFFF;
+    border-color: #174B73;
+}
+
+#aegis-feedback-tooltip .safeher-textarea {
+    width: 100%;
+    height: 60px;
+    font-family: inherit;
+    font-size: 11px;
+    border-radius: 8px;
+    border: 1px solid #D8DEE5;
+    padding: 8px;
+    box-sizing: border-box;
+    resize: none;
+    background: #FFFFFF;
+    color: #292929;
+    outline: none;
+}
+
+#aegis-feedback-tooltip .safeher-textarea:focus {
+    border-color: #53CEC3;
+    box-shadow: 0 0 0 2px rgba(83, 206, 195, 0.2);
+}
+
+#aegis-feedback-tooltip .safeher-validation-error {
+    color: #E60018;
+    font-size: 10px;
+    font-weight: 600;
+    margin-top: 4px;
+}
+
+#aegis-feedback-tooltip .safeher-inline-toast {
+    display: none;
+    margin-top: 8px;
+    padding: 6px 10px;
+    background: #174B73;
+    color: #FFFFFF;
+    border-radius: 6px;
+    font-size: 10px;
+    font-weight: 600;
+    text-align: center;
+}

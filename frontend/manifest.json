@@ -1,0 +1,49 @@
+{
+    "manifest_version": 3,
+    "name": "SafeHer Voice",
+    "version": "2.0.0",
+    "description": "SafeHer Voice helps users detect harmful, harassing, and misleading content while supporting community feedback and safer online spaces.",
+    "permissions": [
+        "storage",
+        "activeTab",
+        "alarms"
+    ],
+    "host_permissions": [
+        "http://127.0.0.1:8083/*",
+        "ws://127.0.0.1:8083/*",
+        "<all_urls>"
+    ],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "js": [
+                "core/page-route-hook.js"
+            ],
+            "world": "MAIN",
+            "run_at": "document_start"
+        },
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "js": [
+                "core/state.js",
+                "core/bridge.js",
+                "ui-components/tooltip.js",
+                "core/scanner.js"
+            ],
+            "css": [
+                "ui-components/injector.css"
+            ],
+            "run_at": "document_idle"
+        }
+    ],
+    "action": {
+        "default_popup": "popup/popup.html"
+    }
+}

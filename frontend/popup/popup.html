@@ -1,0 +1,1352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SafeHer Voice Dashboard</title>
+  <style>
+    :root {
+      --sh-navy: #174B73;
+      --sh-dark-navy: #123F65;
+      --sh-teal: #53CEC3;
+      --sh-bg: #FFFFFF;
+      --sh-card-bg: #F8FAFC;
+      --sh-text-main: #292929;
+      --sh-text-muted: #747474;
+      --sh-border: #D8DEE5;
+      
+      --sh-high: #E60018;
+      --sh-high-bg: #FFE3E5;
+      --sh-med: #D66A00;
+      --sh-med-bg: #FFF2C5;
+      --sh-low: #A86600;
+      --sh-low-bg: #FFF8BC;
+      
+      --sh-radius-lg: 16px;
+      --sh-radius-md: 12px;
+      --sh-radius-sm: 8px;
+      --sh-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      width: 420px;
+      min-width: 420px;
+      max-width: 420px;
+      height: 600px;
+      min-height: 600px;
+      max-height: 600px;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #F4F7F9;
+      color: var(--sh-text-main);
+    }
+
+    .popup-shell {
+      width: 420px;
+      height: 600px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    /* HEADER */
+    .app-header {
+      flex-shrink: 0;
+      background: linear-gradient(135deg, var(--sh-navy) 0%, var(--sh-dark-navy) 50%, var(--sh-teal) 100%);
+      padding: 16px 20px;
+      color: #FFFFFF;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .header-branding {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .shield-icon-wrapper {
+      width: 38px;
+      height: 38px;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(4px);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .header-title-group h1 {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+
+    .header-subtitle {
+      font-size: 10px;
+      font-weight: 700;
+      opacity: 0.9;
+      letter-spacing: 0.05em;
+      margin-top: 2px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: #94A3B8;
+      display: inline-block;
+    }
+
+    .status-dot.active { background-color: #10B981; }
+    .status-dot.paused { background-color: #F59E0B; }
+    .status-dot.required { background-color: #94A3B8; }
+
+    .header-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 6px;
+    }
+
+    .review-consent-link {
+      font-size: 9px;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.85);
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 12px;
+      padding: 2px 7px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .review-consent-link:hover {
+      background: rgba(255, 255, 255, 0.3);
+      color: #FFFFFF;
+    }
+
+    /* NAVIGATION */
+    .tab-navigation {
+      flex-shrink: 0;
+      background: #FFFFFF;
+      display: flex;
+      border-bottom: 1px solid var(--sh-border);
+      padding: 0 10px;
+    }
+
+    .tab-button {
+      flex: 1;
+      background: none;
+      border: none;
+      padding: 12px 0 10px 0;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--sh-text-muted);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      position: relative;
+      transition: color 0.2s;
+    }
+
+    .tab-button:hover {
+      color: var(--sh-navy);
+    }
+
+    .tab-button.active {
+      color: var(--sh-navy);
+      font-weight: 700;
+    }
+
+    .tab-button.active::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 15%;
+      width: 70%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--sh-navy), var(--sh-teal));
+      border-radius: 3px 3px 0 0;
+    }
+
+    .tab-icon {
+      width: 18px;
+      height: 18px;
+    }
+
+    /* MAIN CONTENT */
+    main {
+      flex: 1 1 auto;
+      min-height: 0;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding: 16px;
+    }
+
+    .tab-view {
+      display: none;
+    }
+
+    .tab-view.active {
+      display: block;
+    }
+
+    .section-header {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--sh-text-muted);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    /* SUMMARY CARDS */
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .summary-box {
+      border-radius: var(--sh-radius-md);
+      padding: 12px 8px;
+      text-align: center;
+      border: 1px solid transparent;
+    }
+
+    .summary-box.high {
+      background-color: var(--sh-high-bg);
+      border-color: rgba(230, 0, 24, 0.2);
+    }
+
+    .summary-box.med {
+      background-color: var(--sh-med-bg);
+      border-color: rgba(214, 106, 0, 0.2);
+    }
+
+    .summary-box.low {
+      background-color: var(--sh-low-bg);
+      border-color: rgba(168, 102, 0, 0.2);
+    }
+
+    .summary-val {
+      font-size: 20px;
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .summary-box.high .summary-val { color: var(--sh-high); }
+    .summary-box.med .summary-val { color: var(--sh-med); }
+    .summary-box.low .summary-val { color: var(--sh-low); }
+
+    .summary-lbl {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .summary-box.high .summary-lbl { color: var(--sh-high); }
+    .summary-box.med .summary-lbl { color: var(--sh-med); }
+    .summary-box.low .summary-lbl { color: var(--sh-low); }
+
+    /* PATTERN RECOGNITION TREND DASHBOARD */
+    .trend-card {
+      background: #FFFFFF;
+      border: 1px solid var(--sh-border);
+      border-radius: var(--sh-radius-lg);
+      padding: 14px;
+      margin-bottom: 18px;
+      box-shadow: var(--sh-shadow);
+    }
+
+    .trend-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .trend-title {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--sh-navy);
+      letter-spacing: 0.04em;
+    }
+
+    .trend-legend {
+      display: flex;
+      gap: 10px;
+      font-size: 9px;
+      font-weight: 700;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .legend-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+    }
+
+    .legend-dot.high { background: var(--sh-high); }
+    .legend-dot.med { background: var(--sh-med); }
+    .legend-dot.low { background: var(--sh-low); }
+
+    .trend-svg-container {
+      width: 100%;
+      min-height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* FLAGGED COMMENTS */
+    .comments-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .comment-card {
+      background: #FFFFFF;
+      border: 1px solid var(--sh-border);
+      border-radius: var(--sh-radius-lg);
+      padding: 14px;
+      box-shadow: var(--sh-shadow);
+      cursor: pointer;
+      transition: border-color 0.2s, transform 0.1s;
+    }
+
+    .comment-card:hover {
+      border-color: var(--sh-teal);
+    }
+
+    .comment-card.selected {
+      border-color: var(--sh-navy);
+      box-shadow: 0 0 0 2px rgba(23, 75, 115, 0.15);
+    }
+
+    .comment-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+
+    .comment-author {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--sh-text-main);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .author-icon {
+      color: var(--sh-high);
+      display: inline-flex;
+    }
+
+    .severity-badge {
+      font-size: 9px;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .severity-badge.high { background: var(--sh-high-bg); color: var(--sh-high); }
+    .severity-badge.med { background: var(--sh-med-bg); color: var(--sh-med); }
+    .severity-badge.low { background: var(--sh-low-bg); color: var(--sh-low); }
+
+    .comment-text {
+      font-size: 12px;
+      color: var(--sh-text-main);
+      line-height: 1.4;
+      margin-bottom: 4px;
+      font-weight: 500;
+    }
+
+    .comment-subtext {
+      font-size: 11px;
+      color: var(--sh-text-muted);
+      font-style: italic;
+    }
+
+    /* SAFEHER ASSISTANT PREVIEW CARD */
+    .assistant-card {
+      background: #FFFFFF;
+      border: 1px solid var(--sh-border);
+      border-radius: var(--sh-radius-lg);
+      padding: 16px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+      margin-bottom: 16px;
+      position: relative;
+    }
+
+    .assistant-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .assistant-title {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--sh-navy);
+      letter-spacing: 0.05em;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .close-assistant-btn {
+      background: none;
+      border: none;
+      color: var(--sh-text-muted);
+      font-size: 16px;
+      cursor: pointer;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    .close-assistant-btn:hover {
+      background: #F1F5F9;
+      color: var(--sh-text-main);
+    }
+
+    .meta-label {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--sh-text-muted);
+      letter-spacing: 0.04em;
+      margin-bottom: 4px;
+    }
+
+    .detected-pattern-val {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--sh-text-main);
+      margin-bottom: 4px;
+    }
+
+    .pattern-explanation {
+      font-size: 11px;
+      color: var(--sh-text-muted);
+      line-height: 1.4;
+      margin-bottom: 14px;
+    }
+
+    .suggested-reply-box {
+      background: #F8FAFC;
+      border-left: 3px solid var(--sh-teal);
+      padding: 10px 12px;
+      border-radius: 0 8px 8px 0;
+      font-size: 11px;
+      color: var(--sh-text-main);
+      font-style: italic;
+      line-height: 1.4;
+      margin-bottom: 14px;
+    }
+
+    .action-btn-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+    }
+
+    .sh-btn {
+      padding: 8px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      border: 1px solid transparent;
+      transition: all 0.2s;
+    }
+
+    .sh-btn-ignore {
+      background: #F1F5F9;
+      color: var(--sh-text-main);
+      border-color: #E2E8F0;
+    }
+    .sh-btn-ignore:hover { background: #E2E8F0; }
+
+    .sh-btn-reply {
+      background: linear-gradient(135deg, var(--sh-navy), var(--sh-teal));
+      color: #FFFFFF;
+    }
+    .sh-btn-reply:hover { opacity: 0.95; box-shadow: 0 2px 6px rgba(83, 206, 195, 0.4); }
+
+    .sh-btn-report {
+      background: #FFF5F5;
+      color: var(--sh-high);
+      border-color: #FFE3E5;
+    }
+    .sh-btn-report:hover { background: #FFE3E5; }
+
+    /* PROFILE TAB */
+    .level-card {
+      background: linear-gradient(135deg, var(--sh-navy) 0%, var(--sh-dark-navy) 60%, var(--sh-teal) 100%);
+      border-radius: var(--sh-radius-lg);
+      padding: 20px;
+      color: #FFFFFF;
+      margin-bottom: 20px;
+      box-shadow: 0 6px 16px rgba(18, 63, 101, 0.2);
+    }
+
+    .level-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+
+    .level-icon-badge {
+      width: 44px;
+      height: 44px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1.5px solid rgba(255, 255, 255, 0.4);
+      flex-shrink: 0;
+    }
+
+    .level-icon-badge svg {
+      display: block;
+      width: 22px;
+      height: 22px;
+    }
+
+    .level-title-sub {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      opacity: 0.9;
+    }
+
+    .level-points-big {
+      font-size: 28px;
+      font-weight: 800;
+      line-height: 1.1;
+    }
+
+    .level-points-unit {
+      font-size: 14px;
+      font-weight: 600;
+      opacity: 0.85;
+    }
+
+    .progress-bar-container {
+      height: 6px;
+      background: rgba(255, 255, 255, 0.25);
+      border-radius: 3px;
+      overflow: hidden;
+      margin-bottom: 8px;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: #FFFFFF;
+      border-radius: 3px;
+      width: 0%;
+      transition: width 0.4s ease;
+    }
+
+    .progress-subtext {
+      font-size: 10px;
+      font-weight: 600;
+      opacity: 0.85;
+      text-align: right;
+    }
+
+    .activity-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .activity-item {
+      background: #FFFFFF;
+      border: 1px solid var(--sh-border);
+      border-radius: var(--sh-radius-md);
+      padding: 10px 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .activity-main {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .activity-icon {
+      width: 28px;
+      height: 28px;
+      background: rgba(83, 206, 195, 0.12);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--sh-teal);
+      flex-shrink: 0;
+    }
+
+    .activity-icon svg {
+      display: block;
+      width: 14px;
+      height: 14px;
+    }
+
+    .activity-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--sh-text-main);
+    }
+
+    .activity-points {
+      font-size: 12px;
+      font-weight: 800;
+      color: #10B981;
+    }
+
+    /* EVIDENCE CARD IN PROFILE */
+    .evidence-profile-card {
+      background: #FFFFFF;
+      border: 1px solid var(--sh-border);
+      border-radius: var(--sh-radius-lg);
+      padding: 16px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: var(--sh-shadow);
+    }
+
+    /* REWARDS TAB */
+    .rewards-balance-card {
+      background: #FFFFFF;
+      border: 1px solid var(--sh-border);
+      border-radius: var(--sh-radius-lg);
+      padding: 16px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: var(--sh-shadow);
+    }
+
+    .rewards-balance-icon {
+      width: 44px;
+      height: 44px;
+      background: #EBF5FF;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--sh-navy);
+      flex-shrink: 0;
+    }
+
+    .rewards-balance-icon svg {
+      display: block;
+      width: 22px;
+      height: 22px;
+    }
+
+    .rewards-balance-lbl {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--sh-text-muted);
+      letter-spacing: 0.04em;
+    }
+
+    .rewards-balance-val {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--sh-navy);
+    }
+
+    .rewards-catalog {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .reward-card {
+      background: #FFFFFF;
+      border: 1px solid var(--sh-border);
+      border-radius: var(--sh-radius-lg);
+      padding: 12px 14px;
+      display: grid;
+      grid-template-columns: 44px minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 12px;
+      min-height: 76px;
+      box-shadow: var(--sh-shadow);
+    }
+
+    .reward-card.locked {
+      opacity: 0.85;
+      background: #F8FAFC;
+    }
+
+    .reward-icon {
+      width: 44px;
+      height: 44px;
+      background: #EBF5FF;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--sh-navy);
+      flex-shrink: 0;
+    }
+
+    .reward-icon svg {
+      display: block;
+      width: 22px;
+      height: 22px;
+    }
+
+    .reward-info {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .reward-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--sh-text-main);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .reward-cost {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--sh-text-muted);
+    }
+
+    .reward-btn {
+      padding: 7px 14px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      border: none;
+      cursor: not-allowed;
+      white-space: nowrap;
+      flex-shrink: 0;
+      min-width: 96px;
+      text-align: center;
+    }
+
+    .reward-btn-locked {
+      background: #E2E8F0;
+      color: var(--sh-text-muted);
+    }
+
+    .reward-btn-available {
+      background: var(--sh-teal);
+      color: #FFFFFF;
+    }
+    .reward-btn-available:hover {
+      opacity: 0.92;
+    }
+
+    .reward-btn-locked {
+      background: #E2E8F0;
+      color: var(--sh-text-muted);
+      cursor: not-allowed;
+    }
+
+    .reward-btn-redeemed {
+      background: #10B981;
+      color: #FFFFFF;
+      cursor: default;
+      opacity: 0.9;
+    }
+
+    .rewards-tip-card {
+      background: #F8FAFC;
+      border: 1px solid var(--sh-border);
+      border-radius: var(--sh-radius-lg);
+      padding: 12px 14px;
+      margin-top: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .rewards-tip-icon {
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    .rewards-tip-text {
+      font-size: 11px;
+      color: var(--sh-text-muted);
+      line-height: 1.4;
+      font-weight: 500;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 24px;
+      font-size: 12px;
+      color: var(--sh-text-muted);
+      background: #FFFFFF;
+      border-radius: var(--sh-radius-lg);
+      border: 1px solid var(--sh-border);
+    }
+
+    #toast-notice {
+      position: fixed;
+      bottom: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--sh-navy);
+      color: #FFFFFF;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 6px 16px;
+      border-radius: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      display: none;
+      z-index: 100;
+    }
+
+    /* ── CONSENT OVERLAY ──────────────────────────────────────────────────── */
+    #consent-overlay, #evidence-modal-overlay {
+      display: flex;
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 25, 41, 0.82);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(4px);
+    }
+
+    .consent-modal {
+      background: #FFFFFF;
+      border-radius: 20px;
+      padding: 28px 24px 24px;
+      width: 340px;
+      max-width: 94vw;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+      text-align: center;
+      animation: consent-in 0.35s cubic-bezier(.22,1,.36,1) both;
+    }
+
+    .evidence-modal {
+      background: #FFFFFF;
+      border-radius: 20px;
+      padding: 20px;
+      width: 390px;
+      max-width: 95vw;
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+    }
+
+    .evidence-modal-body {
+      overflow-y: auto;
+      flex: 1;
+      margin: 12px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    @keyframes consent-in {
+      from { opacity: 0; transform: scale(0.92) translateY(12px); }
+      to   { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    .consent-icon {
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(135deg, #EBF5FF, #D0EAF8);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 14px;
+      border: 2px solid rgba(23, 75, 115, 0.15);
+    }
+
+    .consent-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--sh-navy);
+      margin-bottom: 4px;
+    }
+
+    .consent-subtitle {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--sh-teal);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .consent-body {
+      text-align: left;
+      background: #F8FAFC;
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 18px;
+      border: 1px solid var(--sh-border);
+    }
+
+    .consent-body p {
+      font-size: 12px;
+      color: var(--sh-text-muted);
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+
+    .consent-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .consent-list li {
+      font-size: 11px;
+      color: var(--sh-text-main);
+      font-weight: 600;
+      padding: 3px 0;
+      line-height: 1.4;
+    }
+
+    .consent-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .consent-btn-primary {
+      background: linear-gradient(135deg, var(--sh-navy), var(--sh-teal));
+      color: #FFFFFF;
+      border: none;
+      border-radius: 50px;
+      padding: 12px 20px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.1s;
+    }
+
+    .consent-btn-primary:hover {
+      opacity: 0.92;
+      transform: translateY(-1px);
+    }
+
+    .consent-btn-secondary {
+      background: transparent;
+      color: var(--sh-text-muted);
+      border: 1px solid var(--sh-border);
+      border-radius: 50px;
+      padding: 10px 20px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .consent-btn-secondary:hover {
+      background: #F1F5F9;
+    }
+
+    /* ── PROTECTION TOGGLE ────────────────────────────────────────────────── */
+    #header-protection-toggle {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 20px;
+      padding: 4px 8px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      color: rgba(255, 255, 255, 0.9);
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s, opacity 0.2s;
+    }
+
+    #header-protection-toggle:hover:not(:disabled) {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    #header-protection-toggle.protection-disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    #header-protection-toggle .toggle-track {
+      width: 24px;
+      height: 12px;
+      border-radius: 6px;
+      background: rgba(148, 163, 184, 0.6);
+      position: relative;
+      transition: background 0.2s;
+      flex-shrink: 0;
+    }
+
+    #header-protection-toggle.protection-on .toggle-track {
+      background: #10B981;
+    }
+
+    #header-protection-toggle .toggle-thumb {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      transition: left 0.2s;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    }
+
+    #header-protection-toggle.protection-on .toggle-thumb {
+      left: 14px;
+    }
+
+    /* ── WS STATUS BADGE ──────────────────────────────────────────────────── */
+    .ws-badge {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      padding: 3px 7px;
+      border-radius: 10px;
+      white-space: nowrap;
+    }
+
+    .ws-connected {
+      background: rgba(16, 185, 129, 0.2);
+      color: #10B981;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .ws-disconnected {
+      background: rgba(239, 68, 68, 0.2);
+      color: #F87171;
+      border: 1px solid rgba(239, 68, 68, 0.35);
+    }
+
+    /* PRINT LAYOUT FOR CASE FILE EXPORT */
+    @media print {
+      body {
+        width: 100% !important;
+        background: #FFFFFF !important;
+        color: #000000 !important;
+      }
+      .app-header, .tab-navigation, .header-actions, .consent-actions, #toast-notice, button {
+        display: none !important;
+      }
+      .comment-card, .activity-item, .summary-box, tr {
+        page-break-inside: avoid;
+        break-inside: avoid;
+        overflow-wrap: anywhere;
+        word-break: break-word;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="popup-shell">
+
+  <!-- CONSENT OVERLAY MODAL -->
+  <div id="consent-overlay" role="dialog" aria-modal="true" aria-labelledby="consent-title" style="display: none;">
+    <div class="consent-modal" tabindex="-1">
+      <div class="consent-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#174B73" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+      </div>
+      <h2 id="consent-title" class="consent-title">SafeHer Voice</h2>
+      <p class="consent-subtitle">AI-Powered Content Protection</p>
+      <div class="consent-body">
+        <p>SafeHer Voice helps protect online spaces by analyzing text content on supported pages.</p>
+        <ul class="consent-list">
+          <li>✓ Scans only displayed text content on supported web pages</li>
+          <li>✓ Does NOT automatically post responses on your behalf</li>
+          <li>✓ Does NOT automatically report content to platforms</li>
+          <li>✓ You can Pause Protection at any time in the header</li>
+          <li>✓ WebSocket Connection and Protection are independent states</li>
+        </ul>
+      </div>
+      <div class="consent-actions">
+        <button id="consent-agree-btn" class="consent-btn-primary">I Agree – Enable Protection</button>
+        <button id="consent-decline-btn" class="consent-btn-secondary">Not now</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- EVIDENCE CASE FILE OVERLAY MODAL -->
+  <div id="evidence-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="evidence-title" style="display:none;">
+    <div class="evidence-modal" tabindex="-1">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <h3 id="evidence-title" style="font-size:15px; font-weight:800; color:var(--sh-navy);">📁 Case File Evidence Items</h3>
+        <button id="btn-close-evidence-modal" aria-label="Close Case File modal" style="background:none; border:none; font-size:18px; cursor:pointer; color:var(--sh-text-muted);">&times;</button>
+      </div>
+      <div style="font-size:11px; color:var(--sh-text-muted); margin-top:2px;">
+        Locally saved evidence records collected during browsing sessions.
+      </div>
+
+      <div id="evidence-modal-list" class="evidence-modal-body">
+        <div class="empty-state">No evidence saved to Case File yet.</div>
+      </div>
+
+      <div style="display:flex; gap:8px; margin-top:8px;">
+        <button id="btn-export-casefile" class="sh-btn sh-btn-reply" style="flex:2;">Print / Save as PDF</button>
+        <button id="btn-clear-evidence" class="sh-btn sh-btn-report" style="flex:1;">Clear All</button>
+      </div>
+      <div style="font-size:9px; color:var(--sh-text-muted); text-align:center; margin-top:6px; font-style:italic;">
+        Disclaimer: Evidence data is stored locally on your device by user selection.
+      </div>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="app-header">
+    <div class="header-branding">
+      <div class="shield-icon-wrapper">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+        </svg>
+      </div>
+      <div class="header-title-group">
+        <h1>SafeHer Voice</h1>
+        <div class="header-subtitle" id="header-protection-status">
+          <span class="status-dot required" id="status-dot"></span>
+          CONSENT REQUIRED
+        </div>
+      </div>
+    </div>
+    <div class="header-actions">
+      <!-- WS Status Warning Badge (Only displayed when disconnected) -->
+      <span id="ws-status-badge" class="ws-badge ws-disconnected" style="display: none;">Service disconnected</span>
+
+      <div style="display: flex; align-items: center; gap: 6px;">
+        <button id="btn-review-consent" class="review-consent-link" title="Review consent terms">Review consent</button>
+
+        <!-- Protection Toggle (Protection Status Control) -->
+        <button id="header-protection-toggle" class="protection-disabled" role="switch" aria-checked="false" disabled title="Consent required to enable protection" style="display: none;">
+          <div class="toggle-track"><div class="toggle-thumb"></div></div>
+          <span id="toggle-label">OFF</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- NAVIGATION TABS -->
+  <nav class="tab-navigation">
+    <button class="tab-button active" data-tab="scan">
+      <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 7V5a2 2 0 0 1 2-2h2"></path>
+        <path d="M17 3h2a2 2 0 0 1 2 2v2"></path>
+        <path d="M21 17v2a2 2 0 0 1-2 2h-2"></path>
+        <path d="M7 21H5a2 2 0 0 1-2-2v-2"></path>
+      </svg>
+      Scan
+    </button>
+    <button class="tab-button" data-tab="profile">
+      <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+        <circle cx="12" cy="7" r="4"></circle>
+      </svg>
+      Profile
+    </button>
+    <button class="tab-button" data-tab="rewards">
+      <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 15l-2 5l3 -1.5l3 1.5l-2 -5"></path>
+        <circle cx="12" cy="9" r="6"></circle>
+      </svg>
+      Rewards
+    </button>
+  </nav>
+
+  <main>
+    <!-- SCAN VIEW -->
+    <section id="scan-view" class="tab-view active">
+      <div class="section-header">PAGE SCAN SUMMARY</div>
+      
+      <div class="summary-grid">
+        <div class="summary-box high">
+          <div id="summary-high" class="summary-val">0</div>
+          <div class="summary-lbl">HIGH</div>
+        </div>
+        <div class="summary-box med">
+          <div id="summary-med" class="summary-val">0</div>
+          <div class="summary-lbl">MED</div>
+        </div>
+        <div class="summary-box low">
+          <div id="summary-low" class="summary-val">0</div>
+          <div class="summary-lbl">LOW</div>
+        </div>
+      </div>
+
+      <!-- PATTERN RECOGNITION TREND DASHBOARD -->
+      <div class="trend-card">
+        <div class="trend-card-header">
+          <div class="trend-title">PATTERN RECOGNITION DASHBOARD</div>
+          <div class="trend-legend">
+            <div class="legend-item"><span class="legend-dot high"></span>High</div>
+            <div class="legend-item"><span class="legend-dot med"></span>Med</div>
+            <div class="legend-item"><span class="legend-dot low"></span>Low</div>
+          </div>
+        </div>
+        <div id="trend-svg-container" class="trend-svg-container">
+          <div class="empty-state" style="border:none; padding:10px;">Trend data will appear as more detections are recorded.</div>
+        </div>
+      </div>
+
+      <!-- FLAGGED COMMENTS LIST -->
+      <div class="section-header">FLAGGED COMMENTS & ASSISTANT</div>
+      <div id="flagged-comments-list" class="comments-list">
+        <div class="empty-state">No harmful patterns detected on this page.</div>
+      </div>
+
+      <!-- SAFEHER ASSISTANT PREVIEW CARD -->
+      <div id="assistant-preview-card" class="assistant-card" style="display: none;">
+        <div class="assistant-header">
+          <div class="assistant-title">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            SAFEHER ASSISTANT
+          </div>
+          <button id="btn-close-assistant" class="close-assistant-btn">&times;</button>
+        </div>
+
+        <div class="meta-label">DETECTED PATTERN</div>
+        <div id="ast-detected-pattern" class="detected-pattern-val">Potential harmful content</div>
+        <div id="ast-explanation" class="pattern-explanation">Potentially harmful or inappropriate content pattern detected on page.</div>
+
+        <div class="meta-label">SUGGESTED REPLY</div>
+        <div id="ast-suggested-reply" class="suggested-reply-box">"Please keep this conversation respectful and focused on the issue."</div>
+
+        <div class="action-btn-group">
+          <button id="ast-btn-ignore" class="sh-btn sh-btn-ignore">&times; Ignore</button>
+          <button id="ast-btn-reply" class="sh-btn sh-btn-reply">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+            Reply
+          </button>
+          <button id="ast-btn-report" class="sh-btn sh-btn-report">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg>
+            Report
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROFILE VIEW -->
+    <section id="profile-view" class="tab-view">
+      <div class="level-card">
+        <div class="level-header">
+          <div class="level-icon-badge">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 15l-2 5l3 -1.5l3 1.5l-2 -5"></path><circle cx="12" cy="9" r="6"></circle></svg>
+          </div>
+          <div>
+            <div id="profile-level-label" class="level-title-sub">RANK: ROOKIE SCOUT</div>
+            <div class="level-points-big"><span id="profile-points-val">0</span> <span class="level-points-unit">pts</span></div>
+          </div>
+        </div>
+        <div class="progress-bar-container">
+          <div id="profile-progress-fill" class="progress-bar-fill"></div>
+        </div>
+        <div id="profile-next-level-sub" class="progress-subtext">500 pts remaining in today's reward cap</div>
+      </div>
+
+      <!-- EVIDENCE CASE FILE SUMMARY CARD IN PROFILE -->
+      <div class="evidence-profile-card">
+        <div>
+          <div class="rewards-balance-lbl">CASE FILE EVIDENCE</div>
+          <div id="evidence-count-val" style="font-size:16px; font-weight:800; color:var(--sh-navy); margin-top:2px;">0 items saved</div>
+        </div>
+        <button id="btn-view-evidence-modal" class="sh-btn sh-btn-reply" style="padding:6px 12px; font-size:11px;">
+          📁 View Case File
+        </button>
+      </div>
+
+      <!-- ACHIEVEMENT BADGES (AWARDED BY BACKEND) -->
+      <div id="achievement-badges-header" class="section-header" style="display:none;">ACHIEVEMENTS</div>
+      <div id="achievement-badges-list" style="display:none; flex-wrap:wrap; gap:8px; margin-bottom:20px;"></div>
+
+      <!-- RECENT ACTIVITY -->
+      <div class="section-header">RECENT ACTIVITY</div>
+      <div id="activity-list-container" class="activity-list">
+        <div class="empty-state">No activity recorded yet.</div>
+      </div>
+    </section>
+
+    <!-- REWARDS VIEW -->
+    <section id="rewards-view" class="tab-view">
+      <div class="rewards-balance-card">
+        <div>
+          <div class="rewards-balance-lbl">TOTAL POINTS</div>
+          <div id="rewards-balance-val" class="rewards-balance-val">0 pts</div>
+        </div>
+        <div class="rewards-balance-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#174B73" stroke-width="2"><path d="M12 15l-2 5l3 -1.5l3 1.5l-2 -5"></path><circle cx="12" cy="9" r="6"></circle></svg>
+        </div>
+      </div>
+
+      <div class="section-header">REWARDS CATALOGUE (PREVIEW)</div>
+      <div id="rewards-catalog-list" class="rewards-catalog">
+        <!-- Rewards catalog items rendered dynamically -->
+      </div>
+    </section>
+  </main>
+  </div>
+
+  <div id="toast-notice"></div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

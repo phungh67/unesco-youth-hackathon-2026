@@ -1,0 +1,181 @@
+﻿Sentence_id,FullSentence,Base level,Increasing factor,Type,Final level (sentence),Action,Suggested reply
+1,Bài này hay quá.,Non-toxic,Non-increase,neutral,Non-toxic,,
+2,Cảm ơn bạn đã chia sẻ.,Non-toxic,Non-increase,neutral,Non-toxic,,
+3,Mình thích outfit này.,Non-toxic,Non-increase,neutral,Non-toxic,,
+4,Video edit rất đẹp.,Non-toxic,Non-increase,neutral,Non-toxic,,
+5,Quan điểm này khá hợp lý.,Non-toxic,Non-increase,neutral,Non-toxic,,
+6,Nhìn bạn rất tự tin.,Non-toxic,Non-increase,neutral,Non-toxic,,
+7,Nội dung hữu ích thật.,Non-toxic,Non-increase,neutral,Non-toxic,,
+8,Chúc bạn một ngày tốt lành.,Non-toxic,Non-increase,neutral,Non-toxic,,
+9,Mình học được nhiều từ bài này.,Non-toxic,Non-increase,neutral,Non-toxic,,
+10,Clip này vui ghê.,Non-toxic,Non-increase,neutral,Non-toxic,,
+11,Nhìn bạn hơi béo.,Low,Non-increase,body_shaming,Low,Ignore,
+12,Mặt này nhìn không xinh lắm.,Low,Non-increase,body_shaming,Low,Ignore,
+13,Sao dạo này nhìn xuống sắc vậy.,Low,Non-increase,body_shaming,Low,Ignore,
+14,Outfit này không hợp bạn đâu.,Low,Non-increase,body_shaming,Low,Ignore,
+15,Nhìn hơi lố.,Low,Non-increase,body_shaming,Low,Ignore,
+16,Không đẹp lắm.,Low,Non-increase,body_shaming,Low,Ignore,
+17,Trông hơi quê.,Low,Non-increase,body_shaming,Low,Ignore,
+18,Style này không ổn.,Low,Non-increase,body_shaming,Low,Ignore,
+19,Nhìn hơi già.,Low,Non-increase,body_shaming,Low,Ignore,
+20,Makeup hơi quá tay.,Low,Non-increase,body_shaming,Low,Ignore,
+21,Trông không được tự nhiên.,Low,Non-increase,body_shaming,Low,Ignore,
+22,Tóc này không hợp.,Low,Non-increase,body_shaming,Low,Ignore,
+23,Nhìn không có gu.,Low,Non-increase,body_shaming,Low,Ignore,
+24,Trông hơi luộm thuộm.,Low,Non-increase,body_shaming,Low,Ignore,
+25,Gầy quá nhìn không khỏe.,Low,Non-increase,body_shaming,Low,Ignore,
+26,Béo lên rồi đó.,Low,Non-increase,body_shaming,Low,Ignore,
+27,Nhìn hơi kém sang.,Low,Non-increase,body_shaming,Low,Ignore,
+28,Style này fail rồi.,Low,Non-increase,body_shaming,Low,Ignore,
+29,Không ấn tượng lắm.,Low,Non-increase,body_shaming,Low,Ignore,
+30,Hơi dở.,Low,Non-increase,body_shaming,Low,Ignore,
+31,Nội dung hơi nhạt.,Low,Non-increase,body_shaming,Low,Ignore,
+32,Không hợp trend.,Low,Non-increase,body_shaming,Low,Ignore,
+33,Thấy không ổn lắm.,Low,Non-increase,body_shaming,Low,Ignore,
+34,Nhìn hơi phèn.,Low,Non-increase,body_shaming,Low,Ignore,
+35,Không có gì đặc biệt.,Low,Non-increase,body_shaming,Low,Ignore,
+36,Hơi lạc quẻ.,Low,Non-increase,body_shaming,Low,Ignore,
+37,Style này không hợp thời.,Low,Non-increase,body_shaming,Low,Ignore,
+38,Hơi sai vibe.,Low,Non-increase,body_shaming,Low,Ignore,
+39,Nhìn thiếu chuyên nghiệp.,Low,Non-increase,body_shaming,Low,Ignore,
+40,Không đáng xem lắm.,Low,Non-increase,body_shaming,Low,Ignore,
+41,Cách nói chuyện hơi khó chịu.,Low,Non-increase,body_shaming,Low,Ignore,
+42,Nhìn mệt mỏi quá.,Low,Non-increase,body_shaming,Low,Ignore,
+43,Visual này chưa ổn.,Low,Non-increase,body_shaming,Low,Ignore,
+44,Trông hơi cũ kỹ.,Low,Non-increase,body_shaming,Low,Ignore,
+45,Set đồ này hơi dìm bạn.,Low,Non-increase,body_shaming,Low,Ignore,
+46,Mày nhìn hơi béo.,Low,Targeting,body_shaming,Low,Ignore,
+47,Nhìn hơi béo vl.,Low,Intensifier,body_shaming,Low,Ignore,
+48,Mày phối đồ hơi quê vl.,Low,Targeting + Intensifier,body_shaming,Low,Ignore,
+49,Mày trông hơi già.,Low,Targeting,body_shaming,Low,Ignore,
+50,Béo béo vậy thôi.,Low,Frequency,body_shaming,Low,Ignore,
+51,Nhìn phèn vl.,Low,Intensifier,body_shaming,Low,Ignore,
+52,Mày filter này làm xấu hơn.,Low,Targeting,body_shaming,Low,Ignore,
+53,Hơi quê hơi quê thật.,Low,Frequency,body_shaming,Low,Ignore,
+54,Mày nhìn xuống sắc vl.,Low,Targeting + Intensifier,body_shaming,Low,Ignore,
+55,Style này fail fail rồi.,Low,Frequency,body_shaming,Low,Ignore,
+56,Mày xấu vl xấu vl.,Low,Frequency + Targeting + Intensifier,body_shaming,Medium,Suggest reply,Mình không thoải mái với bình luận về ngoại hình. Mong bạn tôn trọng.
+57,Mày béo vl béo vl.,Low,Frequency + Targeting + Intensifier,body_shaming,Medium,Suggest reply,Mình không thoải mái với bình luận về ngoại hình. Mong bạn tôn trọng.
+58,Mày mặc quê vl quê vl.,Low,Frequency + Targeting + Intensifier,body_shaming,Medium,Suggest reply,Mình không thoải mái với bình luận về ngoại hình. Mong bạn tôn trọng.
+59,Mày phèn vl phèn vl.,Low,Frequency + Targeting + Intensifier,body_shaming,Medium,Suggest reply,Mình không thoải mái với bình luận về ngoại hình. Mong bạn tôn trọng.
+60,Mày già vl già vl.,Low,Frequency + Targeting + Intensifier,body_shaming,Medium,Suggest reply,Mình không thoải mái với bình luận về ngoại hình. Mong bạn tôn trọng.
+61,Mày lố vl lố vl.,Low,Frequency + Targeting + Intensifier,body_shaming,Medium,Suggest reply,Mình không thoải mái với bình luận về ngoại hình. Mong bạn tôn trọng.
+62,Mày xấu quá xấu quá vl.,Low,Frequency + Targeting + Intensifier,body_shaming,Medium,Suggest reply,Mình không thoải mái với bình luận về ngoại hình. Mong bạn tôn trọng.
+63,Mày dừ vl dừ vl.,Low,Frequency + Targeting + Intensifier,body_shaming,Medium,Suggest reply,Mình không thoải mái với bình luận về ngoại hình. Mong bạn tôn trọng.
+64,Mày xuống sắc vl xuống sắc vl.,Low,Frequency + Targeting + Intensifier,body_shaming,Medium,Suggest reply,Mình không thoải mái với bình luận về ngoại hình. Mong bạn tôn trọng.
+65,Mày quê vl quê vl.,Low,Frequency + Targeting + Intensifier,body_shaming,Medium,Suggest reply,Mình không thoải mái với bình luận về ngoại hình. Mong bạn tôn trọng.
+66,Mày kém sang vl kém sang vl.,Low,Frequency + Targeting + Intensifier,body_shaming,Medium,Suggest reply,Mình không thoải mái với bình luận về ngoại hình. Mong bạn tôn trọng.
+67,Mày fail vl fail vl.,Low,Frequency + Targeting + Intensifier,body_shaming,Medium,Suggest reply,Mình không thoải mái với bình luận về ngoại hình. Mong bạn tôn trọng.
+68,Mày xấu hoắc vl xấu hoắc vl.,Low,Frequency + Targeting + Intensifier,body_shaming,Medium,Suggest reply,Mình không thoải mái với bình luận về ngoại hình. Mong bạn tôn trọng.
+69,Mày xấu xấu vl.,Low,Frequency + Targeting + Intensifier,body_shaming,Medium,Suggest reply,Mình không thoải mái với bình luận về ngoại hình. Mong bạn tôn trọng.
+70,Mày béo béo vl.,Low,Frequency + Targeting + Intensifier,body_shaming,Medium,Suggest reply,Mình không thoải mái với bình luận về ngoại hình. Mong bạn tôn trọng.
+71,Ngu vậy cũng đăng.,Medium,Non-increase,insult,Medium,Suggest reply,Mình mong cuộc trò chuyện giữ sự tôn trọng. Bình luận này không phù hợp.
+72,Mày nói cái gì vậy.,Medium,Non-increase,insult,Medium,Suggest reply,Mình mong cuộc trò chuyện giữ sự tôn trọng. Bình luận này không phù hợp.
+73,Nội dung này ngu thật.,Medium,Non-increase,insult,Medium,Suggest reply,Mình mong cuộc trò chuyện giữ sự tôn trọng. Bình luận này không phù hợp.
+74,Sao nói chuyện thiếu não vậy.,Medium,Non-increase,insult,Medium,Suggest reply,Mình mong cuộc trò chuyện giữ sự tôn trọng. Bình luận này không phù hợp.
+75,Đăng cái này để làm gì.,Medium,Non-increase,insult,Medium,Suggest reply,Mình mong cuộc trò chuyện giữ sự tôn trọng. Bình luận này không phù hợp.
+76,Mày bị sao vậy.,Medium,Non-increase,insult,Medium,Suggest reply,Mình mong cuộc trò chuyện giữ sự tôn trọng. Bình luận này không phù hợp.
+77,Nói chuyện vô tri thật.,Medium,Non-increase,insult,Medium,Suggest reply,Mình mong cuộc trò chuyện giữ sự tôn trọng. Bình luận này không phù hợp.
+78,Thấy chán thật sự.,Medium,Non-increase,insult,Medium,Suggest reply,Mình mong cuộc trò chuyện giữ sự tôn trọng. Bình luận này không phù hợp.
+79,Đúng kiểu không có não.,Medium,Non-increase,insult,Medium,Suggest reply,Mình mong cuộc trò chuyện giữ sự tôn trọng. Bình luận này không phù hợp.
+80,Cái này dở thật.,Medium,Non-increase,insult,Medium,Suggest reply,Mình mong cuộc trò chuyện giữ sự tôn trọng. Bình luận này không phù hợp.
+81,Mày hiểu gì không vậy.,Medium,Non-increase,insult,Medium,Suggest reply,Mình mong cuộc trò chuyện giữ sự tôn trọng. Bình luận này không phù hợp.
+82,Nói chuyện nhảm nhí.,Medium,Non-increase,insult,Medium,Suggest reply,Mình mong cuộc trò chuyện giữ sự tôn trọng. Bình luận này không phù hợp.
+83,Nội dung rác.,Medium,Non-increase,insult,Medium,Suggest reply,Mình mong cuộc trò chuyện giữ sự tôn trọng. Bình luận này không phù hợp.
+84,Mày đang làm gì vậy.,Medium,Non-increase,insult,Medium,Suggest reply,Mình mong cuộc trò chuyện giữ sự tôn trọng. Bình luận này không phù hợp.
+85,Đăng cái này không thấy ngại à.,Medium,Non-increase,insult,Medium,Suggest reply,Mình mong cuộc trò chuyện giữ sự tôn trọng. Bình luận này không phù hợp.
+86,Mày nghĩ gì khi đăng vậy.,Medium,Non-increase,insult,Medium,Suggest reply,Mình mong cuộc trò chuyện giữ sự tôn trọng. Bình luận này không phù hợp.
+87,Nội dung này tệ thật.,Medium,Non-increase,insult,Medium,Suggest reply,Mình mong cuộc trò chuyện giữ sự tôn trọng. Bình luận này không phù hợp.
+88,Mày đang cố làm gì vậy.,Medium,Non-increase,insult,Medium,Suggest reply,Mình mong cuộc trò chuyện giữ sự tôn trọng. Bình luận này không phù hợp.
+89,Nhảm thật sự.,Medium,Non-increase,insult,Medium,Suggest reply,Mình mong cuộc trò chuyện giữ sự tôn trọng. Bình luận này không phù hợp.
+90,Nói chuyện như đứa con nít.,Medium,Non-increase,insult,Medium,Suggest reply,Mình mong cuộc trò chuyện giữ sự tôn trọng. Bình luận này không phù hợp.
+91,Không hiểu sao lại đăng.,Medium,Non-increase,insult,Medium,Suggest reply,Mình mong cuộc trò chuyện giữ sự tôn trọng. Bình luận này không phù hợp.
+92,Đúng là vô dụng.,Medium,Non-increase,insult,Medium,Suggest reply,Mình mong cuộc trò chuyện giữ sự tôn trọng. Bình luận này không phù hợp.
+93,Thấy không có giá trị.,Medium,Non-increase,insult,Medium,Suggest reply,Mình mong cuộc trò chuyện giữ sự tôn trọng. Bình luận này không phù hợp.
+94,Cái này fail nặng.,Medium,Non-increase,insult,Medium,Suggest reply,Mình mong cuộc trò chuyện giữ sự tôn trọng. Bình luận này không phù hợp.
+95,Đúng kiểu không biết gì.,Medium,Non-increase,insult,Medium,Suggest reply,Mình mong cuộc trò chuyện giữ sự tôn trọng. Bình luận này không phù hợp.
+96,Đăng lên làm gì vậy.,Medium,Non-increase,insult,Medium,Suggest reply,Mình mong cuộc trò chuyện giữ sự tôn trọng. Bình luận này không phù hợp.
+97,Không hiểu nổi.,Medium,Non-increase,insult,Medium,Suggest reply,Mình mong cuộc trò chuyện giữ sự tôn trọng. Bình luận này không phù hợp.
+98,Mày có vấn đề à.,Medium,Non-increase,insult,Medium,Suggest reply,Mình mong cuộc trò chuyện giữ sự tôn trọng. Bình luận này không phù hợp.
+99,Nội dung rác thật.,Medium,Non-increase,insult,Medium,Suggest reply,Mình mong cuộc trò chuyện giữ sự tôn trọng. Bình luận này không phù hợp.
+100,Nhảm vl.,Medium,Non-increase,insult,Medium,Suggest reply,Mình mong cuộc trò chuyện giữ sự tôn trọng. Bình luận này không phù hợp.
+101,Dở vl.,Medium,Non-increase,insult,Medium,Suggest reply,Mình mong cuộc trò chuyện giữ sự tôn trọng. Bình luận này không phù hợp.
+102,Nói chuyện ngu vl.,Medium,Non-increase,insult,Medium,Suggest reply,Mình mong cuộc trò chuyện giữ sự tôn trọng. Bình luận này không phù hợp.
+103,Đăng cái này cringe vl.,Medium,Non-increase,insult,Medium,Suggest reply,Mình mong cuộc trò chuyện giữ sự tôn trọng. Bình luận này không phù hợp.
+104,Không có giá trị gì.,Medium,Non-increase,insult,Medium,Suggest reply,Mình mong cuộc trò chuyện giữ sự tôn trọng. Bình luận này không phù hợp.
+105,Đúng là ngu thật.,Medium,Non-increase,insult,Medium,Suggest reply,Mình mong cuộc trò chuyện giữ sự tôn trọng. Bình luận này không phù hợp.
+106,Mày ngu thật.,Medium,Targeting,insult,Medium,Suggest reply,Mình mong cuộc trò chuyện giữ sự tôn trọng. Bình luận này không phù hợp.
+107,Ngu vl.,Medium,Intensifier,insult,Medium,Suggest reply,Mình mong cuộc trò chuyện giữ sự tôn trọng. Bình luận này không phù hợp.
+108,Mày nói chuyện ngu vl.,Medium,Targeting + Intensifier,insult,Medium,Suggest reply,Mình mong cuộc trò chuyện giữ sự tôn trọng. Bình luận này không phù hợp.
+109,Nhảm nhí nhảm nhí.,Medium,Frequency,general_toxicity,Medium,Suggest reply,"Nếu có góp ý, mong bạn nói theo cách tôn trọng hơn."
+110,Mày vô duyên thật.,Medium,Targeting,insult,Medium,Suggest reply,Mình mong cuộc trò chuyện giữ sự tôn trọng. Bình luận này không phù hợp.
+111,Đàn bà kiểu này vl.,Medium,Intensifier,identity_attack,Medium,Suggest reply,Bình luận mang tính định kiến như vậy không phù hợp. Mong bạn tôn trọng.
+112,Mày comment vô học.,Medium,Targeting,insult,Medium,Suggest reply,Mình mong cuộc trò chuyện giữ sự tôn trọng. Bình luận này không phù hợp.
+113,Cringe vl thật.,Medium,Intensifier,general_toxicity,Medium,Suggest reply,"Nếu có góp ý, mong bạn nói theo cách tôn trọng hơn."
+114,Nói chuyện nhảm nhí nhảm nhí.,Medium,Frequency,general_toxicity,Medium,Suggest reply,"Nếu có góp ý, mong bạn nói theo cách tôn trọng hơn."
+115,Mày quấy rối người khác à.,Medium,Targeting,sexual_harassment,Medium,Suggest reply,Bình luận này khiến mình không thoải mái. Vui lòng dừng lại.
+116,Mày ngu vl ngu vl.,Medium,Frequency + Targeting + Intensifier,insult,High,Report & Save evidence,
+117,Mày rác vl rác vl.,Medium,Frequency + Targeting + Intensifier,general_toxicity,High,Report & Save evidence,
+118,Mày vô duyên vl vô duyên vl.,Medium,Frequency + Targeting + Intensifier,insult,High,Report & Save evidence,
+119,Mày nhảm vl nhảm vl.,Medium,Frequency + Targeting + Intensifier,general_toxicity,High,Report & Save evidence,
+120,Mày vô học vl vô học vl.,Medium,Frequency + Targeting + Intensifier,insult,High,Report & Save evidence,
+121,Mày con gái gì mà vl vl.,Medium,Frequency + Targeting + Intensifier,identity_attack,High,Report & Save evidence,
+122,Mày quấy rối vl quấy rối vl.,Medium,Frequency + Targeting + Intensifier,sexual_harassment,High,Report & Save evidence,
+123,Mày dốt vl dốt vl.,Medium,Frequency + Targeting + Intensifier,insult,High,Report & Save evidence,
+124,Mày hèn vl hèn vl.,Medium,Frequency + Targeting + Intensifier,insult,High,Report & Save evidence,
+125,Mày mất dạy vl mất dạy vl.,Medium,Frequency + Targeting + Intensifier,insult,High,Report & Save evidence,
+126,Mày xàm vl xàm vl.,Medium,Frequency + Targeting + Intensifier,general_toxicity,High,Report & Save evidence,
+127,Mày ngu ngốc vl ngu ngốc vl.,Medium,Frequency + Targeting + Intensifier,insult,High,Report & Save evidence,
+128,Mày đàn bà gì mà vl vl.,Medium,Frequency + Targeting + Intensifier,identity_attack,High,Report & Save evidence,
+129,Mày bệnh vl bệnh vl.,Medium,Frequency + Targeting + Intensifier,insult,High,Report & Save evidence,
+130,Mày rẻ tiền vl rẻ tiền vl.,Medium,Frequency + Targeting + Intensifier,sexual_harassment,High,Report & Save evidence,
+131,Con đĩ này.,High,Non-increase,sexual_harassment,High,Report & Save evidence,
+132,Mày cút đi.,High,Non-increase,threat,High,Report & Save evidence,
+133,Biến khỏi đây đi.,High,Non-increase,threat,High,Report & Save evidence,
+134,Đi chết đi.,High,Non-increase,threat,High,Report & Save evidence,
+135,Đồ rác rưởi.,High,Non-increase,threat,High,Report & Save evidence,
+136,Loại này nên biến mất.,High,Non-increase,threat,High,Report & Save evidence,
+137,Không xứng đáng tồn tại.,High,Non-increase,threat,High,Report & Save evidence,
+138,Đúng là loại rác.,High,Non-increase,threat,High,Report & Save evidence,
+139,Đồ bệnh hoạn.,High,Non-increase,threat,High,Report & Save evidence,
+140,Đồ biến thái.,High,Non-increase,sexual_harassment,High,Report & Save evidence,
+141,Đồ bẩn thỉu.,High,Non-increase,threat,High,Report & Save evidence,
+142,Đúng là kinh tởm.,High,Non-increase,threat,High,Report & Save evidence,
+143,Đồ hạ đẳng.,High,Non-increase,threat,High,Report & Save evidence,
+144,Không ai muốn thấy mày.,High,Non-increase,threat,High,Report & Save evidence,
+145,Cút khỏi đây.,High,Non-increase,threat,High,Report & Save evidence,
+146,Loại đàn bà như mày thật ghê tởm.,High,Non-increase,identity_attack,High,Report & Save evidence,
+147,Mày chỉ đáng bị block thôi.,High,Non-increase,threat,High,Report & Save evidence,
+148,Đừng xuất hiện nữa.,High,Non-increase,threat,High,Report & Save evidence,
+149,Biến đi cho sạch mắt.,High,Non-increase,threat,High,Report & Save evidence,
+150,Mày nên biến mất khỏi mạng đi.,High,Non-increase,threat,High,Report & Save evidence,
+151,Mày cút đi.,High,Targeting,threat,High,Report & Save evidence,
+152,Cút mẹ đi.,High,Intensifier,threat,High,Report & Save evidence,
+153,Mày biến khỏi đây ngay.,High,Targeting,threat,High,Report & Save evidence,
+154,Đi chết đi chết đi.,High,Frequency,threat,High,Report & Save evidence,
+155,Mày kinh tởm vl.,High,Targeting + Intensifier,identity_attack,High,Report & Save evidence,
+156,"Đồ đĩ đượi, con đĩ.",High,Frequency,sexual_harassment,High,Report & Save evidence,
+157,Mày bẩn vl.,High,Targeting + Intensifier,insult,High,Report & Save evidence,
+158,Đừng xuất hiện nữa nữa.,High,Frequency,threat,High,Report & Save evidence,
+159,Mày biến đi vl.,High,Targeting + Intensifier,threat,High,Report & Save evidence,
+160,Loại này cút đi.,High,Targeting,threat,High,Report & Save evidence,
+161,Mày cút đi vl cút đi.,High,Frequency + Targeting + Intensifier,threat,High,Report & Save evidence,
+162,Mày đi chết đi vl đi chết đi.,High,Frequency + Targeting + Intensifier,threat,High,Report & Save evidence,
+163,Mày biến đi vl biến đi.,High,Frequency + Targeting + Intensifier,threat,High,Report & Save evidence,
+164,Mày kinh tởm vl kinh tởm vl.,High,Frequency + Targeting + Intensifier,identity_attack,High,Report & Save evidence,
+165,Mày rác rưởi vl rác rưởi vl.,High,Frequency + Targeting + Intensifier,threat,High,Report & Save evidence,
+166,Mày bệnh hoạn vl bệnh hoạn vl.,High,Frequency + Targeting + Intensifier,sexual_harassment,High,Report & Save evidence,
+167,Mày hạ đẳng vl hạ đẳng vl.,High,Frequency + Targeting + Intensifier,identity_attack,High,Report & Save evidence,
+168,Mày bẩn thỉu vl bẩn thỉu vl.,High,Frequency + Targeting + Intensifier,insult,High,Report & Save evidence,
+169,Mày cút mẹ đi vl cút mẹ đi.,High,Frequency + Targeting + Intensifier,threat,High,Report & Save evidence,
+170,Mày biến khỏi đây vl biến khỏi đây.,High,Frequency + Targeting + Intensifier,threat,High,Report & Save evidence,
+171,Mày đĩ vl đĩ vl.,High,Frequency + Targeting + Intensifier,sexual_harassment,High,Report & Save evidence,
+172,Mày ghê tởm vl ghê tởm vl.,High,Frequency + Targeting + Intensifier,identity_attack,High,Report & Save evidence,
+173,Mày chết đi vl chết đi.,High,Frequency + Targeting + Intensifier,threat,High,Report & Save evidence,
+174,Mày block đi vl block đi.,High,Frequency + Targeting + Intensifier,threat,High,Report & Save evidence,
+175,Mày biến mất đi vl biến mất đi.,High,Frequency + Targeting + Intensifier,threat,High,Report & Save evidence,
+176,Mày vô loại vl vô loại vl.,High,Frequency + Targeting + Intensifier,identity_attack,High,Report & Save evidence,
+177,Mày disgusting vl disgusting vl.,High,Frequency + Targeting + Intensifier,identity_attack,High,Report & Save evidence,
+178,Mày bẩn vl bẩn vl.,High,Frequency + Targeting + Intensifier,insult,High,Report & Save evidence,
+179,Mày biến đi ngay vl biến đi ngay.,High,Frequency + Targeting + Intensifier,threat,High,Report & Save evidence,
+180,Mày cút khỏi đây vl cút khỏi đây.,High,Frequency + Targeting + Intensifier,threat,High,Report & Save evidence,

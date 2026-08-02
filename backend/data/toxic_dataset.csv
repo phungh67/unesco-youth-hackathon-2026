@@ -1,0 +1,61 @@
+﻿STT,Tu,Muc_do,Phan_loai
+1,béo,low,body_shaming
+2,gầy,low,body_shaming
+3,mập,low,body_shaming
+4,ốm nhom,low,body_shaming
+5,không cân đối,low,body_shaming
+6,xuống sắc,low,body_shaming
+7,già,low,body_shaming
+8,xấu dáng,low,body_shaming
+9,thô kệch,low,body_shaming
+10,kém sắc,low,body_shaming
+11,chán,low,general_toxicity
+12,dở,low,general_toxicity
+13,fail,low,general_toxicity
+14,tệ thật,low,general_toxicity
+15,không ổn,low,general_toxicity
+16,lạc quẻ,low,general_toxicity
+17,nhạt,low,general_toxicity
+18,không hay,low,general_toxicity
+19,không ấn tượng,low,general_toxicity
+20,khó chịu,low,general_toxicity
+21,ngu,medium,insult
+22,dốt,medium,insult
+23,nhảm,medium,insult
+24,vô duyên,medium,insult
+25,vô tri,medium,insult
+26,xàm,medium,insult
+27,tệ,medium,insult
+28,kém,medium,insult
+29,ngu ngốc,medium,insult
+30,thiếu não,medium,insult
+31,đàn bà kiểu này,medium,identity_attack
+32,con gái gì mà,medium,identity_attack
+33,loại người như mày,medium,identity_attack
+34,dân kiểu này,medium,identity_attack
+35,tụi mày,medium,identity_attack
+36,bọn này,medium,identity_attack
+37,loại này,medium,identity_attack
+38,giống này,medium,identity_attack
+39,thứ như mày,medium,identity_attack
+40,hạng người này,medium,identity_attack
+41,con đĩ,high,sexual_harassment
+42,đĩ,high,sexual_harassment
+43,đĩ đượi,high,sexual_harassment
+44,rẻ tiền,high,sexual_harassment
+45,lẳng lơ,high,sexual_harassment
+46,biến thái,high,sexual_harassment
+47,bệnh hoạn,high,sexual_harassment
+48,gợi dục,high,sexual_harassment
+49,dâm,high,sexual_harassment
+50,mất nết,high,sexual_harassment
+51,cút đi,high,threat
+52,biến đi,high,threat
+53,biến khỏi đây,high,threat
+54,đi chết đi,high,threat
+55,biến mất,high,threat
+56,không xứng đáng tồn tại,high,threat
+57,đừng xuất hiện,high,threat
+58,block đi,high,threat
+59,tránh xa ra,high,threat
+60,đừng để tao thấy,high,threat
