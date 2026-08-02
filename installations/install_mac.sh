@@ -4,94 +4,71 @@ echo "========================================================"
 echo "                     DISCLAIMER"
 echo "========================================================"
 echo "This script will verify, download, and install:"
-echo "  1. Git (if not installed)"
-echo "  2. Python 3 (if not installed)"
-echo "  3. SafeHer Engine Repository"
-echo "  4. Local NLP Models"
-echo "  5. Backend Python Dependencies"
+echo "  1. Git and Python 3 (if missing)"
+echo "  2. SafeHer Engine Repository"
+echo "  3. ONNX Models (phobert_hate)"
+echo "  4. SBERT Embedding Model (via export_onnx.py)"
+echo "  5. HuggingFace Tokenizers (via downloader.py)"
+echo "  6. Backend Python Dependencies"
 echo ""
 echo "Press ENTER to agree and begin installation..."
 echo "========================================================"
-read -r
-
-echo ""
-echo "========================================================"
-echo "                 INSTALLATION STEPS"
-echo "========================================================"
-echo "  Step 1: Check and auto-install Git & Python"
-echo "  Step 2: Clone repository"
-echo "  Step 3: Download NLP model file"
-echo "  Step 4: Create virtual environment & install libraries"
-echo "  Step 5: Run database/service initialization"
-echo "  Step 6: Launch entrypoint server"
-echo "========================================================"
-echo "Press ENTER to continue..."
 read -r
 
 # ----------------------------------------------------------
 # STEP 1: CHECK & INSTALL MISSING SOFTWARE
 # ----------------------------------------------------------
 echo ""
-echo "[1/6] Checking required software..."
+echo "[1/8] Checking required software..."
 
-# Check Homebrew on macOS if needed
 if [[ "$OSTYPE" == "darwin"* ]]; then
     if ! command -v brew &> /dev/null; then
-        echo "[!] Homebrew not found. Installing Homebrew..."
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
         eval "$(/opt/homebrew/bin/brew shellenv)"
     fi
 fi
 
-# Check Git
 if ! command -v git &> /dev/null; then
-    echo "[!] Git is missing. Installing Git..."
     if [[ "$OSTYPE" == "darwin"* ]]; then
         brew install git
     elif command -v apt &> /dev/null; then
         sudo apt update && sudo apt install -y git
     fi
-    echo "[+] Git installed successfully!"
-else
-    echo "[+] Git is already installed."
 fi
 
-# Check Python3
 if ! command -v python3 &> /dev/null; then
-    echo "[!] Python3 is missing. Installing Python3..."
     if [[ "$OSTYPE" == "darwin"* ]]; then
         brew install python
     elif command -v apt &> /dev/null; then
         sudo apt update && sudo apt install -y python3 python3-venv python3-pip
     fi
-    echo "[+] Python3 installed successfully!"
-else
-    echo "[+] Python3 is already installed."
 fi
 
 # ----------------------------------------------------------
-# STEP 2: CLONE REPOSITORY
+# STEP 2: CLONE REPOSITORY & NAVIGATE
 # ----------------------------------------------------------
 echo ""
-echo "[2/6] Cloning Repository..."
-# Replace with your actual GitHub/GitLab URL
-git clone "https://github.com/your-username/safeher-engine.git" safeher-engine
-cd safeher-engine || exit
+echo "[2/8] Cloning Repository..."
+git clone "https://github.com/phungh67/unesco-youth-hackathon-2026.git" safeher-engine
+cd safeher-engine/backend || exit
 
 # ----------------------------------------------------------
-# STEP 3: DOWNLOAD NLP MODEL
+# STEP 3: CREATE DIRECTORIES & DOWNLOAD ONNX MODELS
 # ----------------------------------------------------------
 echo ""
-echo "[3/6] Downloading NLP Model..."
-# Replace URL with your actual model URL
-# curl -L -o my_nlp_model.bin "https://your-model-url.com/model.bin"
-echo "[+] NLP Model downloaded."
+echo "[3/8] Setting up model directories and downloading weights..."
+mkdir -p data/models
+
+# Download ONNX model files into backend/data/models/
+curl -L -o "data/models/phobert_hate.onnx" "https://drive.google.com/file/d/1gAxFHyjcLtl5NsIUMbaqy17B6glL0fVB/view?usp=sharing"
+curl -L -o "data/models/phobert_hate.onnx.data" "https://drive.google.com/file/d/1vSEAZ427G1aaXEvy0TXWHzt-paWOrVHj/view?usp=sharing"
+echo "[+] ONNX Models placed in backend/data/models/"
 
 # ----------------------------------------------------------
 # STEP 4: VIRTUAL ENVIRONMENT & DEPENDENCIES
 # ----------------------------------------------------------
 echo ""
-echo "[4/6] Setting up Python Environment & Dependencies..."
+echo "[4/8] Setting up Python Environment & Dependencies..."
 if [ ! -d "venv" ]; then
     python3 -m venv venv
 fi
@@ -100,17 +77,31 @@ python3 -m pip install --upgrade pip
 pip install -r requirements.txt
 
 # ----------------------------------------------------------
-# STEP 5: INITIALIZATION SERVICE
+# STEP 5: EXPORT SBERT EMBEDDING MODEL
 # ----------------------------------------------------------
 echo ""
-echo "[5/6] Executing Initialization Script..."
-python3 -c "import helper; helper.initscript()"
+echo "[5/8] Running helper/export_onnx.py (Exporting SBERT Embedding Model)..."
+python3 helper/export_onnx.py
 
 # ----------------------------------------------------------
-# STEP 6: LAUNCH BACKEND
+# STEP 6: RUN DOWNLOADER SCRIPT
+# ----------------------------------------------------------
+echo ""
+echo "[6/8] Running downloader.py (Installing Tokenizers/Embeddings)..."
+python3 downloader.py
+
+# ----------------------------------------------------------
+# STEP 7: DATABASE SEEDING
+# ----------------------------------------------------------
+echo ""
+echo "[7/8] Seeding the local ChromaDB database..."
+python3 helper/db_seeding.py
+
+# ----------------------------------------------------------
+# STEP 8: LAUNCH BACKEND
 # ----------------------------------------------------------
 echo ""
 echo "========================================================"
-echo "[6/6] INSTALLATION COMPLETE! Starting Server..."
+echo "[8/8] INSTALLATION COMPLETE! Starting Server..."
 echo "========================================================"
 python3 entrypoint.py

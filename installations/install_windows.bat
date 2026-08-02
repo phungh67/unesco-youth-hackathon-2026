@@ -56,8 +56,8 @@ echo [3/8] Setting up model directories and downloading weights...
 IF NOT EXIST "data\models" mkdir "data\models"
 
 :: Download ONNX model files into backend\data\models\
-:: curl -L -o "data\models\phobert_hate.onnx" "https://your-model-url.com/phobert_hate.onnx"
-:: curl -L -o "data\models\phobert_hate.onnx.data" "https://your-model-url.com/phobert_hate.onnx.data"
+curl -L -o "data/models/phobert_hate.onnx" "https://drive.google.com/file/d/1gAxFHyjcLtl5NsIUMbaqy17B6glL0fVB/view?usp=sharing"
+curl -L -o "data/models/phobert_hate.onnx.data" "https://drive.google.com/file/d/1vSEAZ427G1aaXEvy0TXWHzt-paWOrVHj/view?usp=sharing"
 echo [+] ONNX Models placed in backend\data\models\
 
 :: ----------------------------------------------------------
