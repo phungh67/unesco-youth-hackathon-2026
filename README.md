@@ -33,3 +33,7 @@ mil-toolkit-backend/
 Currently, the Cloud feature (community-based knowledge library) is not supported, so all the data will be kept in the local machine. Development team labeled and classified about 230 samples for harassment and hated speech. These material will be used in the seeding process, providing initial baseline for detection.
 
 During installation process, the script will call some lesser scripts to init the database and put data into it.
+
+# How to install
+
+Navigate to Release, currently it is version `1.0.0`, take the correct script, and the requirement file if necessary. Then run the script. It is recommended to run it under administrator privilege since it will install `Git` and `Python`, then adding these tools to the system variable under `$PATH`, normal user probably could not satisfy this step.
