@@ -24,7 +24,7 @@ mil-toolkit-backend/
 
 - **[backend](backend/README.md)** this is the logical behind the software. It ultilizes 2 famous models in recognizing and extracting Vietnamese words in a text or a paragraph. Credits for these model belongs to [VinAI/PhoBert](https://huggingface.co/vinai/phobert-base-v2)
 
-- **[frontend](frontend/manifest.json)** a web extension, can be imported into Chromium-based browsers (Google Chrome, Microsoft Edge,...), providing a user-interface, lables data for logical processing, providing alert about harassment speechs,...
+- **[frontend](frontend/README.md)** a web extension, can be imported into Chromium-based browsers (Google Chrome, Microsoft Edge,...), providing a user-interface, lables data for logical processing, providing alert about harassment speechs,...
 
 - **[installation](installation)** contains 2 automatically install scripts for Windows and Mac. The script will download necessary software (Python, Git) then installs it to user's machine.
 
